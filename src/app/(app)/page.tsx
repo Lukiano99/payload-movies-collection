@@ -1,16 +1,24 @@
 import React from 'react'
-import config from '@payload-config'
+
 import { getPayloadHMR } from '@payloadcms/next/utilities'
+import configPromise from '@payload-config'
+import MovieCards from './movie-cards'
 
 const Page = async () => {
-  const payload = await getPayloadHMR({
-    config,
+  const payload = await getPayloadHMR({ config: configPromise })
+
+  const movies = await payload.find({
+    collection: 'movies',
+    sort: '-votes',
   })
 
-  const data = await payload.find({
-    collection: 'movies',
-  })
-  return <main>children</main>
+  return (
+    <>
+      <main className="mt-5">
+        <MovieCards movies={movies.docs} />
+      </main>
+    </>
+  )
 }
 
 export default Page
