@@ -17,8 +17,8 @@ export default function MovieCards({ movies: initialMovies }: { movies: Movie[] 
     <div className="flex flex-wrap gap-3">
       {movies.map((movie) => (
         <React.Fragment key={movie.id}>
-          <Card className="md:max-w-72 hover:scale-[101%] transition-all">
-            <CardHeader>
+          <Card className="md:max-w-72 hover:scale-[101%]  transition-all">
+            <CardHeader className="md:h-24">
               <CardTitle>{movie.name}</CardTitle>
             </CardHeader>
             <CardContent className="flex flex-col gap-3">
@@ -28,7 +28,7 @@ export default function MovieCards({ movies: initialMovies }: { movies: Movie[] 
                   alt={(movie.poster as Media)?.text ?? ''}
                   width={(movie.poster as Media)?.width ?? 100}
                   height={(movie.poster as Media)?.height ?? 100}
-                  className="rounded-md"
+                  className="rounded-md md:h-80 object-cover"
                 />
               </Link>
               <div className="flex justify-between items-center">
